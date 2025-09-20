@@ -1,16 +1,41 @@
 ---
-
+import Counter from '../components/Counter.tsx'
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Astro + React + Tailwind + Functions</title>
+  </head>
+  <body class="min-h-dvh bg-gray-50 text-gray-900">
+    <main class="mx-auto max-w-md p-6 space-y-4">
+      <h1 class="text-2xl font-bold">Hello Astro Islands</h1>
+
+      <!-- 見えた時だけ React をロード（軽い） -->
+      <Counter client:visible />
+
+      <div class="space-x-2">
+        <button id="btn-hello" class="rounded border px-3 py-2">/api/hello</button>
+        <button id="btn-me" class="rounded border px-3 py-2">/api/me</button>
+      </div>
+
+      <pre id="out" class="rounded bg-white p-3 text-sm shadow"></pre>
+
+      <script>
+        const out = document.getElementById('out')
+        const show = (title: string, data: unknown) => out!.textContent = `${title}\n` + JSON.stringify(data, null, 2)
+
+        document.getElementById('btn-hello')?.addEventListener('click', async () => {
+          const r = await fetch('/api/hello', { headers: { Accept: 'application/json' } })
+          show('[GET] /api/hello', await r.json())
+        })
+        document.getElementById('btn-me')?.addEventListener('click', async () => {
+          const r = await fetch('/api/me', { credentials: 'include' })
+          let body; try { body = await r.json() } catch { body = { error: true } }
+          show(`[GET] /api/me (${r.status})`, body)
+        })
+      </script>
+    </main>
+  </body>
 </html>
