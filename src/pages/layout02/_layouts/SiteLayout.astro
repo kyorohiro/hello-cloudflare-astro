@@ -1,12 +1,13 @@
 ---
-import "../styles/global.css";
+import "../_styles/global.css";
 
 const { title = "MySite", pathname } = Astro.props as { title?: string; pathname: string };
+const basepath = `${pathname}`.replace(/\/[^\/]+$/, "" )
 const links = [
-  { href: "/features", label: "Features" },
-  { href: "/pricing",  label: "Pricing"  },
-  { href: "/docs",     label: "Docs"     },
-  { href: "/contact",  label: "Contact"  },
+  { href: `${basepath}/features`, label: "Features" },
+  { href: `${basepath}/pricing`,  label: "Pricing"  },
+  { href: `${basepath}/docs`,     label: "Docs"     },
+  { href: `${basepath}/contact`,  label: "Contact"  },
 ];
 ---
 
@@ -31,7 +32,7 @@ const links = [
                 <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" />
               </svg>
             </button>
-            <a href="/" class="font-bold tracking-tight">MySite</a>
+            <a href=`${basepath}` class="font-bold tracking-tight">MySite</a>
           </div>
 
           <!-- 右: トップメニュー（モバイルのみ表示） -->
@@ -42,10 +43,6 @@ const links = [
                 {l.label}
               </a>
             ))}
-            <a href="/contact"
-              class="rounded-lg border border-gray-900 px-3 py-1.5 text-sm font-medium hover:bg-gray-900 hover:text-white">
-              Get Started
-            </a>
           </nav>
         </div>
       </div>
@@ -60,9 +57,6 @@ const links = [
             {l.label}
           </a>
         ))}
-        <a href="/contact" class="mt-2 rounded-lg border border-gray-900 px-3 py-2 text-sm font-medium hover:bg-gray-900 hover:text-white">
-          Get Started
-        </a>
       </nav>
     </aside>
 
