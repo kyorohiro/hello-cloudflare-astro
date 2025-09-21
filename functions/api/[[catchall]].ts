@@ -17,6 +17,15 @@ const noCache = (res: Response) => {
   return res
 }
 
+app.use('*', async (c, next) => {
+  await next();
+  c.header('Access-Control-Allow-Origin', '*');
+  c.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  c.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE,OPTIONS');
+});
+
+app.options('*', (c) => c.body(null, 204));
+
 app.get('/api/hello', (c) =>
   noCache(c.json({ ok: true, now: new Date().toISOString() }))
 )

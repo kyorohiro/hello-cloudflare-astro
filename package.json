@@ -3,13 +3,13 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "npm-run-all -p dev:*",
-    "dev:build": "astro build --watch",
-    "dev:pages": "wrangler pages dev dist",
+    "dev:astro": "astro dev",
+    "dev:pages": "wrangler pages dev --port 4321",
+    "dev2:build": "astro build --watch",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "deploy": "wrangler pages deploy dist"
+    "deploy": "wrangler pages deploy dist --project-name=kyorohiro-oidc-client --branch=main "
   },
   "dependencies": {
     "@astrojs/react": "^4.3.1",

@@ -1,16 +1,12 @@
 ---
 import Counter from '../components/Counter.tsx'
+import BaseLayout from '../layouts/BaseLayout.astro'
 ---
 
 <html lang="ja">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Astro + React + Tailwind + Functions</title>
-  </head>
-  <body class="min-h-dvh bg-gray-50 text-gray-900">
-    <main class="mx-auto max-w-md p-6 space-y-4">
-      <h1 class="text-2xl font-bold">Hello Astro Islands</h1>
+  <BaseLayout title="Astro Accepts React and Tailwind!">
+   <main class="mx-auto max-w-md p-6 space-y-4">
+      <h1 class="text-2xl font-bold">Hello Astro Islands v3</h1>
 
       <!-- 見えた時だけ React をロード（軽い） -->
       <Counter client:visible />
@@ -23,19 +19,23 @@ import Counter from '../components/Counter.tsx'
       <pre id="out" class="rounded bg-white p-3 text-sm shadow"></pre>
 
       <script>
+        import { baseAddress } from "../config"
+
         const out = document.getElementById('out')
         const show = (title: string, data: unknown) => out!.textContent = `${title}\n` + JSON.stringify(data, null, 2)
 
         document.getElementById('btn-hello')?.addEventListener('click', async () => {
-          const r = await fetch('/api/hello', { headers: { Accept: 'application/json' } })
+          console.log(`call ${baseAddress}/api/hello`); 
+          const r = await fetch(`${baseAddress}/api/hello`, { headers: { Accept: 'application/json' } })
           show('[GET] /api/hello', await r.json())
         })
         document.getElementById('btn-me')?.addEventListener('click', async () => {
-          const r = await fetch('/api/me', { credentials: 'include' })
+          console.log(`call ${baseAddress}/api/me`); 
+          const r = await fetch(`${baseAddress}/api/me`, { credentials: 'include' })
           let body; try { body = await r.json() } catch { body = { error: true } }
           show(`[GET] /api/me (${r.status})`, body)
         })
       </script>
     </main>
-  </body>
+  </BaseLayout>
 </html>
