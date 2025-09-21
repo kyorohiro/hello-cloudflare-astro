@@ -1,0 +1,138 @@
+---
+import "../styles/global.css";
+
+const { title = "MySite", pathname } = Astro.props as { title?: string; pathname: string };
+const links = [
+  { href: "/features", label: "Features" },
+  { href: "/pricing",  label: "Pricing"  },
+  { href: "/docs",     label: "Docs"     },
+  { href: "/contact",  label: "Contact"  },
+];
+---
+
+<html lang="ja" class="h-full bg-gray-50">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen">
+    <!-- Header: 常に上 -->
+    <header class="fixed inset-x-0 top-0 z-50 border-b bg-white/80 backdrop-blur">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 items-center justify-between">
+          <!-- 左: ロゴ / モバイル用ハンバーガー -->
+          <div class="flex items-center gap-3">
+            <button id="hamburger"
+              class="md:hidden inline-flex items-center justify-center rounded-md p-2 ring-1 ring-gray-300 hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-900"
+              aria-controls="mobile-drawer" aria-expanded="false">
+              <span class="sr-only">Open menu</span>
+              <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" />
+              </svg>
+            </button>
+            <a href="/" class="font-bold tracking-tight">MySite</a>
+          </div>
+
+          <!-- 右: トップメニュー（モバイルのみ表示） -->
+          <nav class="flex items-center gap-2 md:hidden">
+            {links.map((l) => (
+              <a href={l.href}
+                class={`rounded-md px-3 py-1.5 text-sm ${pathname === l.href ? "bg-gray-900 text-white" : "text-gray-700 hover:bg-gray-100"}`}>
+                {l.label}
+              </a>
+            ))}
+            <a href="/contact"
+              class="rounded-lg border border-gray-900 px-3 py-1.5 text-sm font-medium hover:bg-gray-900 hover:text-white">
+              Get Started
+            </a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- サイドバー（md↑固定。ヘッダー下から） -->
+    <aside class="hidden md:fixed md:top-16 md:bottom-0 md:left-0 md:z-40 md:flex md:w-72 md:flex-col md:border-r md:bg-white">
+      <nav class="flex flex-1 flex-col gap-1 p-3">
+        {links.map((l) => (
+          <a href={l.href}
+            class={`rounded-md px-3 py-2 text-sm ${pathname === l.href ? "bg-gray-900 text-white" : "text-gray-800 hover:bg-gray-100"}`}>
+            {l.label}
+          </a>
+        ))}
+        <a href="/contact" class="mt-2 rounded-lg border border-gray-900 px-3 py-2 text-sm font-medium hover:bg-gray-900 hover:text-white">
+          Get Started
+        </a>
+      </nav>
+    </aside>
+
+    <!-- モバイル: オーバーレイ -->
+    <div id="overlay"
+      class="fixed inset-0 z-40 bg-black/40 opacity-0 pointer-events-none transition-opacity md:hidden"
+      aria-hidden="true"></div>
+
+    <!-- モバイル: ドロワー -->
+    <aside id="mobile-drawer" role="dialog" aria-modal="true"
+      class="fixed inset-y-0 left-0 z-50 w-72 -translate-x-full transform bg-white shadow-xl transition-transform md:hidden">
+      <div class="flex items-center justify-between border-b p-4">
+        <span class="font-semibold">Menu</span>
+        <button id="drawer-close"
+          class="inline-flex items-center justify-center rounded-md p-2 ring-1 ring-gray-300 hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-900">
+          <span class="sr-only">Close menu</span> ✕
+        </button>
+      </div>
+      <nav class="flex flex-col gap-1 p-2">
+        {links.map((l) => (
+          <a href={l.href}
+            class={`rounded-md px-3 py-2 text-base ${pathname === l.href ? "bg-gray-900 text-white" : "text-gray-800 hover:bg-gray-100"}`}>
+            {l.label}
+          </a>
+        ))}
+        <a href="/contact" class="mt-2 rounded-lg border border-gray-900 px-3 py-2 text-base font-medium hover:bg-gray-900 hover:text-white">
+          Get Started
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main: ヘッダー分 pt-16、md↑はサイド分オフセット -->
+    <main class="mx-auto max-w-7xl px-4 pt-16 pb-12 sm:px-6 lg:px-8 md:ml-72">
+      <slot />
+    </main>
+
+    <footer class="border-t bg-white md:ml-72">
+      <div class="mx-auto max-w-7xl px-4 py-8 text-sm text-gray-600 sm:px-6 lg:px-8">© 2025 MySite</div>
+    </footer>
+
+    <!-- 超軽量のクライアントスクリプト（SSGされた静的HTML上で実行） -->
+    <script is:inline>
+      (() => {
+        const body = document.body;
+        const btn = document.getElementById('hamburger');
+        const drawer = document.getElementById('mobile-drawer');
+        const overlay = document.getElementById('overlay');
+        const closeBtn = document.getElementById('drawer-close');
+
+        const open = () => {
+          drawer?.classList.remove('-translate-x-full');
+          overlay?.classList.remove('pointer-events-none', 'opacity-0');
+          overlay?.classList.add('opacity-100');
+          body.style.overflow = 'hidden';
+          btn?.setAttribute('aria-expanded', 'true');
+        };
+        const close = () => {
+          drawer?.classList.add('-translate-x-full');
+          overlay?.classList.add('pointer-events-none', 'opacity-0');
+          overlay?.classList.remove('opacity-100');
+          body.style.overflow = '';
+          btn?.setAttribute('aria-expanded', 'false');
+        };
+
+        btn?.addEventListener('click', open);
+        closeBtn?.addEventListener('click', close);
+        overlay?.addEventListener('click', close);
+        window.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+      })();
+    </script>
+  </body>
+</html>
+

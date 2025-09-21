@@ -5,11 +5,10 @@
   "scripts": {
     "dev:astro": "astro dev",
     "dev:pages": "wrangler pages dev --port 4321",
-    "dev2:build": "astro build --watch",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "deploy": "wrangler pages deploy dist --project-name=kyorohiro-oidc-client --branch=main "
+    "deploy": "wrangler pages deploy dist --project-name=kyorohiro-astro --branch=main "
   },
   "dependencies": {
     "@astrojs/react": "^4.3.1",
@@ -20,6 +19,8 @@
     "hono": "^4.9.8",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-router": "^7.9.1",
+    "react-router-dom": "^7.9.1",
     "tailwindcss": "^4.1.13"
   },
   "devDependencies": {

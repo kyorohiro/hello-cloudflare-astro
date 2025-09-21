@@ -1,0 +1,16 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+const pathname = Astro.url.pathname;
+---
+<SiteLayout title="Pricing – MySite" pathname={pathname}>
+  <h1 class="mb-4 text-2xl font-bold">Pricing</h1>
+  <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+    {["Free","Pro","Enterprise"].map((plan) => (
+      <div class="rounded-2xl border bg-white p-6 shadow-sm">
+        <h3 class="mb-2 text-lg font-semibold">{plan}</h3>
+        <p class="text-sm text-gray-600">Lorem ipsum dolor sit amet.</p>
+      </div>
+    ))}
+  </div>
+</SiteLayout>
+
