@@ -1,8 +1,10 @@
 ---
 import SiteLayout from "./_layouts/SiteLayout.astro";
 const pathname = Astro.url.pathname;
+const basepath = "/layout02";
+
 ---
-<SiteLayout title="Docs – MySite" pathname={pathname}>
+<SiteLayout title="Contact – MySite" pathname={pathname}  basepath={basepath}>
   <h1 class="mb-4 text-2xl font-bold">Docs</h1>
   <p class="text-gray-700">ドキュメントページ。</p>
 </SiteLayout>

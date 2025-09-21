@@ -1,8 +1,8 @@
 ---
 import "../_styles/global.css";
 
-const { title = "MySite", pathname } = Astro.props as { title?: string; pathname: string };
-const basepath = `${pathname}`.replace(/\/[^\/]+$/, "" )
+const { title = "MySite", pathname, basepath } = Astro.props as { title?: string; pathname: string, basepath:string };
+
 const links = [
   { href: `${basepath}/features`, label: "Features" },
   { href: `${basepath}/pricing`,  label: "Pricing"  },
@@ -15,7 +15,7 @@ const links = [
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
+    <title>{title} {basepath}</title>
   </head>
   <body class="min-h-screen">
     <!-- Header: 常に上 -->
