@@ -1,0 +1,4 @@
+@import "tailwindcss";
+
+/* ← これを入れる：.dark（または .dark の祖先）があれば dark: を有効化 */
+@custom-variant dark (&:where(.dark, .dark *));
