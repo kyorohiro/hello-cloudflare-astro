@@ -1,0 +1,27 @@
+---
+// src/pages/example01/_layouts/ParallaxLayout.astro
+const { title = "Example Parallax" } = Astro.props;
+---
+<html lang="ja" class="h-full">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-dvh bg-zinc-950 text-zinc-100 antialiased">
+    <header class="sticky top-0 z-[100] backdrop-blur border-b border-white/10">
+      <div class="mx-auto max-w-[var(--page-max)] px-4 py-3 flex items-center justify-between">
+        <a href="/" class="font-semibold tracking-wide">Parallax Demo</a>
+        <nav class="text-sm opacity-80">/example01</nav>
+      </div>
+    </header>
+    <main class="contents">
+      <slot />
+    </main>
+    <footer class="border-t border-white/10">
+      <div class="mx-auto max-w-[var(--page-max)] px-4 py-8 text-xs opacity-70">
+        Built with Astro + React + Tailwind
+      </div>
+    </footer>
+  </body>
+</html>

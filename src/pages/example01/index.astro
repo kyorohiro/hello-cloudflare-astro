@@ -1,0 +1,54 @@
+---
+import "./_styles/global.css";
+import ParallaxLayout from "./_layouts/ParallaxLayout.astro";
+import ParallaxScene, { Layer } from "./_components/Parallax.tsx";
+---
+
+<ParallaxLayout title="SVG Parallax">
+  <ParallaxScene client:load height={100}>
+    <!-- 奥：ゆっくり -->
+    <Layer speed={0.15}>
+      <svg viewBox="0 0 1200 600" class="w-full h-full">
+        <defs>
+          <linearGradient id="bg" x1="0" x2="1">
+            <stop offset="0" stop-color="#0b1020" />
+            <stop offset="1" stop-color="#1d2a45" />
+          </linearGradient>
+        </defs>
+        <rect width="1200" height="600" fill="url(#bg)" />
+        <g opacity="0.2">
+          <circle cx="150" cy="120" r="80" fill="#8ec5ff" />
+          <circle cx="1050" cy="420" r="120" fill="#ffd18e" />
+        </g>
+      </svg>
+    </Layer>
+
+    <!-- 中：ほどほど -->
+    <Layer speed={0.35}>
+      <svg viewBox="0 0 1200 600" class="w-full h-full">
+        <g opacity="0.35">
+          <polygon points="0,520 400,360 800,520 1200,380 1200,600 0,600" fill="#3b5b7a"/>
+          <polygon points="0,540 350,420 900,540 1200,460 1200,600 0,600" fill="#27425b"/>
+        </g>
+      </svg>
+    </Layer>
+
+    <!-- 手前：しっかり動く -->
+    <Layer speed={0.7} className="pointer-events-auto">
+      <div class="h-full grid place-items-center">
+        <div class="text-center px-6">
+          <h1 class="text-5xl md:text-6xl font-black tracking-tight drop-shadow">
+            SVG Parallax Demo
+          </h1>
+          <p class="mt-3 text-white/80">スクロールして動きを確認してね</p>
+        </div>
+      </div>
+    </Layer>
+  </ParallaxScene>
+
+  <section id="content" class="mx-auto max-w-[1200px] px-4 py-24 prose prose-invert">
+    <h2>通常コンテンツ</h2>
+    <p>この下にさらにテキストを入れてスクロール量を増やすと、動きがより分かりやすくなります。</p>
+    <div style="height: 120vh"></div>
+  </section>
+</ParallaxLayout>
