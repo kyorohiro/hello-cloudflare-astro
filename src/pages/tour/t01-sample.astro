@@ -1,0 +1,72 @@
+---
+import "./_styles/global.css";
+import BaseLauout from  "./_layout/BaseLayout.astro";
+import BaseLayout from "./_layout/BaseLayout.astro";
+---
+
+
+<BaseLayout>
+<!-- 画面全体の余白と背景 -->
+<div class="min-h-dvh bg-slate-50">
+
+  <!-- コンテンツ幅の制御と左右中央寄せ -->
+  <main class="mx-auto max-w-screen-lg p-6 space-y-8">
+    <!-- ヘッダー -->
+    <header class="space-y-2">
+      <h1 class="text-3xl font-bold tracking-tight text-slate-900">
+        Utility-First Warm-up
+      </h1>
+      <p class="text-slate-600 leading-relaxed">
+        CSS ファイルは一切書かず、Tailwind のユーティリティだけで
+        余白・色・タイポ・レイアウトを作ってみましょう。
+      </p>
+    </header>
+
+    <!-- 3カードのグリッド。幅に応じて列数はこの課題ではまだ固定（後の課題でレスポンシブ化） -->
+    <section class="grid grid-cols-1 gap-6 sm:grid-cols-3">
+      <!-- カード 1 -->
+      <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <h2 class="text-lg font-semibold text-slate-900">余白（Spacing）</h2>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+          <code class="rounded bg-slate-100 px-1 py-0.5">p-6</code>,
+          <code class="rounded bg-slate-100 px-1 py-0.5">gap-6</code> などで内外余白を制御。
+        </p>
+        <button
+          class="mt-4 inline-flex items-center justify-center rounded-lg bg-sky-600 px-3 py-2 text-sm font-medium text-white hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2"
+        >
+          余白を調整
+        </button>
+      </article>
+
+      <!-- カード 2 -->
+      <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <h2 class="text-lg font-semibold text-slate-900">色とコントラスト</h2>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+          背景は <code class="rounded bg-slate-100 px-1 py-0.5">bg-slate-50</code>、
+          カードは <code class="rounded bg-slate-100 px-1 py-0.5">bg-white</code>。
+          テキストは <code class="rounded bg-slate-100 px-1 py-0.5">text-slate-900/600</code>。
+        </p>
+        <div class="mt-4 flex items-center gap-2">
+          <span class="h-6 w-6 rounded bg-slate-50 border border-slate-200"></span>
+          <span class="h-6 w-6 rounded bg-white border border-slate-200"></span>
+          <span class="h-6 w-6 rounded bg-sky-600"></span>
+        </div>
+      </article>
+
+      <!-- カード 3 -->
+      <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <h2 class="text-lg font-semibold text-slate-900">タイポグラフィ</h2>
+        <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+          見出しは <code class="rounded bg-slate-100 px-1 py-0.5">text-lg font-semibold</code>、
+          本文は <code class="rounded bg-slate-100 px-1 py-0.5">text-sm leading-relaxed</code> など。
+        </p>
+        <a href="#"
+           class="mt-4 inline-block text-sm font-medium text-sky-700 hover:text-sky-800 underline underline-offset-4">
+          文字まわりをもっと見る →
+        </a>
+      </article>
+    </section>
+  </main>
+</div>
+
+</BaseLayout>

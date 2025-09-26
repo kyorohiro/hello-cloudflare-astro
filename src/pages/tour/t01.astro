@@ -1,0 +1,37 @@
+---
+import "./_styles/global.css";
+import BaseLauout from  "./_layout/BaseLayout.astro";
+import BaseLayout from "./_layout/BaseLayout.astro";
+---
+
+
+<BaseLayout>
+<!-- 画面全体の余白と背景 -->
+<div id="a1" class="min-h-dvh bg-slate-800 text-slate-200">
+  <!-- コンテンツ幅の制御と左右中央寄せ -->
+    <header>
+        <h1 class="">ここは Header です</h1>
+        <p>
+            p1
+        </p>
+        <p>
+            p2
+        </p>
+    </header>
+
+    <main id="a2" class="mx-auto p-6 max-w-screen-lg space-y-8 bg-slate-600 ">
+        <section  class=" grid grid-cols-2 gap-4">
+            <section>s001</section>
+            <section>s002</section>
+            <section>s003</section>
+            <section>s004</section>
+            <section>s005</section>
+            <section>s006</section>
+            <section>s007</section>
+        </section>
+    </main>
+</main>
+
+</div>
+
+</BaseLayout>
