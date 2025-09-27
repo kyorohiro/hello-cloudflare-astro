@@ -1,0 +1,127 @@
+---
+import "./_styles/global.css";
+// import "./_styles/gap.css";
+import BaseLayout from "./_layout/BaseLayout.astro";
+---
+
+
+<BaseLayout>
+<div class="min-h-dvh bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased">
+  <header class="sticky top-0 z-40 border-b border-slate-200/70 dark:border-slate-800/70 bg-white/80 dark:bg-slate-950/60 backdrop-blur">
+    <div class="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+      <div class="flex h-14 items-center justify-between">
+        <a class="font-semibold tracking-tight" href="#">Tailwind Tour</a>
+        <nav class="hidden md:flex items-center gap-6 text-sm">
+          <a class="hover:text-slate-900 dark:hover:text-white text-slate-600 dark:text-slate-400" href="#features">Features</a>
+          <a class="hover:text-slate-900 dark:hover:text-white text-slate-600 dark:text-slate-400" href="#media">Media</a>
+          <a class="hover:text-slate-900 dark:hover:text-white text-slate-600 dark:text-slate-400" href="#contact">Contact</a>
+        </nav>
+        <div class="flex items-center gap-2">
+          <button class="btn" data-variant="outline" onclick="document.documentElement.classList.toggle('dark')">🌓</button>
+          <button class="btn" data-variant="primary">Get Started</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="relative overflow-hidden">
+      <div class="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-[1.1fr_.9fr] items-center gap-8 py-12 sm:py-16">
+          <div class="space-y-4">
+            <h1 class="text-balance text-4xl sm:text-5xl font-semibold tracking-tight">これ一枚で、Tailwindの“要”は押さえられる</h1>
+            <p class="text-slate-600 dark:text-slate-400 text-lg">ユーティリティ / レスポンシブ / コンテナクエリ / 状態 / タイポ / アニメーション / ダーク・テーマ。</p>
+            <div class="flex flex-wrap gap-2">
+              <button class="btn" data-variant="primary">今すぐ始める</button>
+              <button class="btn" data-variant="ghost">ドキュメント</button>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/50 p-3">
+            <div class="aspect-video overflow-hidden rounded-xl bg-[linear-gradient(110deg,#e5e7eb,45%,#f3f4f6,55%,#e5e7eb)] bg-[length:200%_100%] animate-[shimmer_1.4s_linear_infinite]">
+              <iframe class="size-full opacity-0 transition-opacity duration-500" id="heroVid" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Intro" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">動画は <code>aspect-video</code> で比率固定。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 py-10">
+      <div class="@container">
+        <div class="grid gap-4 @sm:grid-cols-2 @lg:grid-cols-3">
+          <article class="card"><h3 class="card-title">レスポンシブ</h3><p class="card-desc">`sm:` `md:` `lg:` で段階的に。</p></article>
+          <article class="card"><h3 class="card-title">コンテナクエリ</h3><p class="card-desc">親幅で切替（`@sm:`）。</p></article>
+          <article class="card"><h3 class="card-title">状態</h3><p class="card-desc">`hover:` `focus-visible:` など。</p></article>
+          <article class="card"><h3 class="card-title">タイポ</h3><p class="card-desc">`max-w-[65ch]`。</p></article>
+          <article class="card" data-tone="accent"><h3 class="card-title">ダーク & テーマ</h3><p class="card-desc">`html.dark` と `@theme`。</p></article>
+          <article class="card"><h3 class="card-title">アニメーション</h3><p class="card-desc">`transition-*` / `animate-*`。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="media" class="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 py-10">
+      <div class="grid gap-6 sm:grid-cols-2">
+        <figure class="card">
+          <div class="aspect-[3/2] overflow-hidden rounded-xl">
+            <img class="size-full object-cover object-[50%_20%]" src="https://picsum.photos/seed/focus/1200/800" alt="">
+          </div>
+          <figcaption class="mt-2 text-sm text-slate-600">焦点を任意位置に。</figcaption>
+        </figure>
+        <figure class="card">
+          <picture>
+            <source media="(min-width:1024px)" srcset="https://picsum.photos/id/1018/1200/500">
+            <source media="(min-width:640px)"  srcset="https://picsum.photos/id/1018/1000/600">
+            <img class="aspect-[3/2] w-full rounded-xl object-cover" src="https://picsum.photos/id/1018/800/900" alt="">
+          </picture>
+          <figcaption class="mt-2 text-sm text-slate-600">画面幅でアートディレクション。</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="contact" class="mx-auto max-w-screen-sm px-4 sm:px-6 lg:px-8 py-10">
+      <form class="card space-y-4" novalidate>
+        <h3 class="card-title">お問い合わせ</h3>
+        <label class="text-sm font-medium">メール</label>
+        <input type="email" required class="input" placeholder="you@example.com">
+        <label class="text-sm font-medium">内容</label>
+        <textarea required rows="4" class="input resize-y" placeholder="メッセージ"></textarea>
+        <div class="flex justify-end gap-2">
+          <button type="reset" class="btn" data-variant="ghost">クリア</button>
+          <button type="submit" class="btn" data-variant="primary">送信</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200/70 dark:border-slate-800/70 py-8">
+    <div class="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 text-sm text-slate-600 dark:text-slate-400 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+      <span>© 2025 Tailwind Tour</span>
+      <nav class="flex gap-4"><a class="hover:text-slate-900 dark:hover:text-white" href="#">利用規約</a><a class="hover:text-slate-900 dark:hover:text-white" href="#">プライバシー</a></nav>
+    </div>
+  </footer>
+</div>
+
+<style>
+  @reference "tailwindcss"; /* ← これを最上位に追加 */
+  @theme { --color-brand: oklch(70% 0.17 155); }
+  @layer components {
+    .btn { @apply inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition border border-transparent bg-slate-900 text-white hover:bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2; }
+    .btn[data-variant="primary"] { @apply bg-brand hover:bg-brand/90 text-white; }
+    .btn[data-variant="outline"] { @apply bg-white text-slate-900 border-slate-300 hover:bg-slate-50; }
+    .btn[data-variant="ghost"]   { @apply bg-transparent text-slate-900 hover:bg-slate-100; }
+
+    .card { @apply rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950/40 p-5 shadow-sm; }
+    .card[data-tone="accent"] { @apply relative ps-5; }
+    .card[data-tone="accent"]::before { content:""; @apply absolute left-0 top-0 h-full w-1 rounded-l-2xl bg-brand; }
+    .card-title { @apply text-lg font-semibold text-slate-900 dark:text-white; }
+    .card-desc  { @apply mt-1 text-sm text-slate-600 dark:text-slate-400; }
+
+    .input { @apply w-full rounded-lg border border-slate-300 bg-white dark:bg-slate-950 px-3 py-2 text-slate-900 dark:text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-brand/40; }
+  }
+  @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+</style>
+<script>
+  const vid = document.getElementById('heroVid');
+  vid.addEventListener('load', () => { vid.style.opacity = 1; });
+</script>
+</BaseLayout>

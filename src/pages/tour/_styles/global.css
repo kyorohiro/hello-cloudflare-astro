@@ -1,18 +1,27 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ★ デフォルト（必要なら） */
+:root { @theme { --color-brand: oklch(70% 0.17 155); } }
+
+/* ★ テーマ別は必ずデフォルトの後に置く（:root を付ける） */
+:root[data-theme="mint"]  { @theme { --color-brand: oklch(70% 0.17 155); } }
+:root[data-theme="amber"] { @theme { --color-brand: oklch(78% 0.20  70); } }
+:root[data-theme="ocean"] { @theme { --color-brand: oklch(68% 0.19 220); } }
+
+/* 3) その後にブレークポイントなど他の @theme を書く */
 @theme {
-  /* 新しいブレークポイントを追加・上書き */
-  --breakpoint-xs: 30rem;   /* 480 px */
-  --breakpoint-md: 50rem;   /* 800 px に再定義 */
+  --breakpoint-xs: 30rem;
+  --breakpoint-md: 50rem;
 }
-/* sidebar用のブレークポイントを小さめに @sm/sidebar: みたいに使う */
 @theme sidebar {
---breakpoint-sm: 400px;
---breakpoint-md: 600px;
+  --breakpoint-sm: 400px;
+  --breakpoint-md: 600px;
+}
+@theme content {
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
 }
 
-/* content用はデフォルトのまま.  @sm/content: みたいに使*/
-@theme content {
---breakpoint-sm: 640px;
---breakpoint-md: 768px;
-}
+
 
