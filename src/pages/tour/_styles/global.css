@@ -1,1 +1,6 @@
 @import "tailwindcss";
+@theme {
+  /* 新しいブレークポイントを追加・上書き */
+  --breakpoint-xs: 30rem;   /* 480 px */
+  --breakpoint-md: 50rem;   /* 800 px に再定義 */
+}
