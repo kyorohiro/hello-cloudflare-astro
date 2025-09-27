@@ -1,0 +1,30 @@
+---
+import "./_styles/global.css";
+import BaseLayout from "./_layout/BaseLayout.astro";
+---
+
+
+<BaseLayout>
+<div class="min-h-dvh bg-slate-50 p-6">
+  <main class="mx-auto max-w-screen-lg space-y-6">
+    <section class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <div class="mb-3 flex gap-2 text-sm text-slate-600">
+        <button class="rounded border px-3 py-1 hover:bg-slate-100" onclick="wrap.style.width='100%'">100%</button>
+        <button class="rounded border px-3 py-1 hover:bg-slate-100" onclick="wrap.style.width='720px'">720px</button>
+        <button class="rounded border px-3 py-1 hover:bg-slate-100" onclick="wrap.style.width='480px'">480px</button>
+      </div>
+
+      <div id="wrap" class="@container mx-auto w-full transition-all duration-300">
+        <div class="grid grid-cols-1 gap-4 @sm:grid-cols-2 @md:grid-cols-3">
+          <article class="rounded-xl border border-slate-200 p-4 @sm:p-5 @md:p-6">
+            <h2 class="text-base @sm:text-lg @md:text-xl font-semibold text-slate-900">Card</h2>
+            <p class="mt-1 text-sm @sm:text-[0.95rem] @md:text-base text-slate-600 leading-relaxed">親幅で1→2→3列。</p>
+          </article>
+          <!-- もっと追加OK -->
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+<script>const wrap = document.getElementById('wrap');</script>
+</BaseLayout>
