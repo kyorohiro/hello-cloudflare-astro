@@ -1,0 +1,85 @@
+---
+import "./_styles/global.css";
+// import "./_styles/gap.css";
+import BaseLayout from "./_layout/BaseLayout.astro";
+---
+
+
+<BaseLayout>
+<div class="min-h-dvh bg-slate-50 antialiased p-6">
+  <main class="mx-auto max-w-screen-md space-y-8">
+    <section class="space-y-3">
+      <h2 class="text-xl font-semibold">Buttons</h2>
+      <div class="flex flex-wrap gap-2">
+        <button class="btn" data-variant="primary">Primary</button>
+        <button class="btn" data-variant="outline">Outline</button>
+        <button class="btn" data-variant="ghost">Ghost</button>
+      </div>
+    </section>
+
+    <section class="space-y-3">
+      <h2 class="text-xl font-semibold">Cards</h2>
+      <article class="card"><h3 class="card-title">Card</h3><p class="card-desc">説明文。</p></article>
+      <article class="card" data-tone="accent"><h3 class="card-title">Accent</h3><p class="card-desc">左ライン付き。</p></article>
+    </section>
+
+    <section class="space-y-3">
+      <h2 class="text-xl font-semibold">Modal</h2>
+      <button id="open" class="btn" data-variant="primary">開く</button>
+      <div id="backdrop" class="modal-backdrop" hidden></div>
+      <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="m_title" hidden>
+        <header class="modal-header">
+          <h3 id="m_title" class="modal-title">タイトル</h3>
+          <button id="close" class="icon-btn" aria-label="閉じる">✕</button>
+        </header>
+        <div class="modal-body"><p>本文</p></div>
+        <footer class="modal-actions">
+          <button class="btn" data-variant="ghost" id="cancel">キャンセル</button>
+          <button class="btn" data-variant="primary">OK</button>
+        </footer>
+      </div>
+    </section>
+  </main>
+</div>
+
+<style>
+  @reference "tailwindcss"; /* ← これを最上位に追加 */
+  @theme { --color-brand: oklch(70% 0.17 155); }
+  @layer components {
+    .btn { @apply inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm font-medium border border-transparent bg-slate-900 text-white hover:bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 transition; }
+    .btn[data-variant="primary"] { @apply bg-brand hover:bg-brand/90 text-white; }
+    .btn[data-variant="outline"] { @apply bg-white text-slate-900 border-slate-300 hover:bg-slate-50; }
+    .btn[data-variant="ghost"]   { @apply bg-transparent text-slate-900 hover:bg-slate-100; }
+
+    .card { @apply rounded-2xl border border-slate-200 bg-white p-5 shadow-sm; }
+    .card[data-tone="accent"] { @apply relative ps-5; }
+    .card[data-tone="accent"]::before { content:""; @apply absolute left-0 top-0 h-full w-1 rounded-l-2xl bg-brand; }
+    .card-title { @apply text-lg font-semibold text-slate-900; }
+    .card-desc  { @apply mt-1 text-sm text-slate-600; }
+
+    .modal-backdrop { @apply fixed inset-0 bg-slate-900/50; }
+    .modal { @apply fixed left-1/2 top-1/2 w-[min(560px,calc(100vw-2rem))] -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-slate-200 bg-white p-0 shadow-xl; }
+    .modal-header { @apply flex items-center justify-between border-b border-slate-200 px-5 py-3; }
+    .modal-title  { @apply text-base font-semibold text-slate-900; }
+    .modal-body   { @apply px-5 py-4 text-slate-700; }
+    .modal-actions{ @apply flex justify-end gap-2 border-t border-slate-200 px-5 py-3; }
+
+    .icon-btn { @apply inline-flex size-8 items-center justify-center rounded-md text-slate-500 hover:bg-slate-100 hover:text-slate-900; }
+  }
+</style>
+<script>
+  const open = document.getElementById('open');
+  const close = document.getElementById('close');
+  const cancel = document.getElementById('cancel');
+  const modal = document.getElementById('modal');
+  const backdrop = document.getElementById('backdrop');
+  function show(){ modal.hidden = backdrop.hidden = false; modal.querySelector('button').focus(); }
+  function hide(){ modal.hidden = backdrop.hidden = true; open.focus(); }
+  open.addEventListener('click', show);
+  close.addEventListener('click', hide);
+  cancel.addEventListener('click', hide);
+  backdrop.addEventListener('click', hide);
+  window.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && !modal.hidden) hide(); });
+</script>
+
+</BaseLayout>

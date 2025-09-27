@@ -1,0 +1,26 @@
+
+---
+import "./_styles/global.css";
+import BaseLayout from "./_layout/BaseLayout.astro";
+---
+
+
+<BaseLayout>
+<div class="min-h-dvh bg-slate-50 antialiased p-6">
+  <main class="mx-auto max-w-screen-sm space-y-6">
+    <form class="space-y-6" novalidate>
+      <div class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm [&:has(input:invalid)]:ring-2 [&:has(input:invalid)]:ring-rose-200">
+        <label for="name" class="block text-sm font-medium">お名前 <span class="text-rose-600">*</span></label>
+        <input id="name" required minlength="2" class="mt-2 block w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-400 invalid:border-rose-400" placeholder="山田 太郎" />
+      </div>
+
+      <label class="flex items-start gap-3 text-sm rounded-xl border border-slate-200 bg-white p-4">
+        <input type="checkbox" required class="peer mt-0.5 size-4 rounded border-slate-300" />
+        <span><span class="font-medium">利用規約に同意</span><span class="block text-slate-600">必須です。</span><span class="mt-1 hidden text-rose-700 peer-[&:not(:checked)]:block">チェックしてください。</span></span>
+      </label>
+
+      <button type="submit" class="rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-black focus-visible:ring-2 focus-visible:ring-sky-400">送信</button>
+    </form>
+  </main>
+</div>
+</BaseLayout>

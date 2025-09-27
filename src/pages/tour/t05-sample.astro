@@ -1,0 +1,45 @@
+
+---
+import "./_styles/global.css";
+import BaseLayout from "./_layout/BaseLayout.astro";
+---
+
+
+<BaseLayout>
+<div class="min-h-dvh bg-slate-50">
+  <header class="sticky top-0 z-40 border-b bg-white/90 backdrop-blur">
+    <div class="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+      <div class="flex h-14 items-center justify-between">
+        <div class="font-semibold">Flex/Grid Layout</div>
+        <nav class="hidden md:flex items-center gap-6 text-sm">
+          <a class="text-slate-600 hover:text-slate-900" href="#">Docs</a>
+          <a class="text-slate-600 hover:text-slate-900" href="#">Blog</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 py-6 grid gap-6 grid-cols-1 md:grid-cols-[240px_1fr] lg:grid-cols-[260px_1fr_320px]">
+    <aside class="hidden md:block sticky top-16 rounded-xl border bg-white p-3 text-sm">
+      <a class="block rounded-lg px-3 py-2 bg-sky-50 text-sky-800 border border-sky-200" href="#">Dashboard</a>
+      <a class="block rounded-lg px-3 py-2 hover:bg-slate-50 mt-1" href="#">Projects</a>
+    </aside>
+
+    <section class="space-y-6">
+      <article class="rounded-2xl border bg-white p-6 shadow-sm">
+        <h1 class="text-2xl sm:text-3xl font-semibold text-slate-900">概要</h1>
+        <p class="mt-2 text-slate-600">Header=Flex / Page=Grid の組み合わせ。</p>
+      </article>
+      <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        <article class="rounded-xl border bg-white p-5"><h2 class="text-lg font-semibold">カード</h2></article>
+        <article class="rounded-xl border bg-white p-5"><h2 class="text-lg font-semibold">カード</h2></article>
+        <article class="rounded-xl border bg-white p-5"><h2 class="text-lg font-semibold">カード</h2></article>
+      </div>
+    </section>
+
+    <aside class="hidden lg:block sticky top-16">
+      <div class="rounded-xl border bg-white p-5">右カラム</div>
+    </aside>
+  </main>
+</div>
+</BaseLayout>
