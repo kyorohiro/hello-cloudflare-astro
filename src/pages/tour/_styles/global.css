@@ -4,3 +4,15 @@
   --breakpoint-xs: 30rem;   /* 480 px */
   --breakpoint-md: 50rem;   /* 800 px に再定義 */
 }
+/* sidebar用のブレークポイントを小さめに @sm/sidebar: みたいに使う */
+@theme sidebar {
+--breakpoint-sm: 400px;
+--breakpoint-md: 600px;
+}
+
+/* content用はデフォルトのまま.  @sm/content: みたいに使*/
+@theme content {
+--breakpoint-sm: 640px;
+--breakpoint-md: 768px;
+}
+
